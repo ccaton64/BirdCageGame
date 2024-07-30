@@ -654,6 +654,25 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.86, z: 0}
+--- !u!111 &1514782646
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514782639}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: -203655887218126122, guid: c61582cefdbea9c4cbd002320ad439eb, type: 3}
+  m_Animations:
+  - {fileID: -203655887218126122, guid: c61582cefdbea9c4cbd002320ad439eb, type: 3}
+  - {fileID: -203655887218126122, guid: 956551b5ec2db9549bbce78964d02681, type: 3}
+  - {fileID: -203655887218126122, guid: 2823825fc602b6b44b8dfd980cdcc06e, type: 3}
+  - {fileID: -203655887218126122, guid: a6a9907678ab1c249835081cf7e35f04, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1969554986
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +789,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c61582cefdbea9c4cbd002320ad439eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1514782643}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c61582cefdbea9c4cbd002320ad439eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1514782646}
   m_SourcePrefab: {fileID: 100100000, guid: c61582cefdbea9c4cbd002320ad439eb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

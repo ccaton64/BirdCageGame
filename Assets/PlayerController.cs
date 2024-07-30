@@ -26,10 +26,15 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundLayerMask;
 
+    Animation anim;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        anim = GetComponent<Animation>();
+        anim.Play("Idle");
     }
 
     void Update()
@@ -49,6 +54,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            anim.Play("Jumping");
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -62,5 +68,12 @@ public class PlayerController : MonoBehaviour
 
             chrCont.Move(direction * speed * Time.deltaTime);
         }
+
+        if (anim.isPlaying == false)
+        {
+            anim.Play("Idle");
+        }
+
+
     }
 }
