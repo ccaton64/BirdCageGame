@@ -11,6 +11,7 @@ public class characterMovement : MonoBehaviour
     // Variables to store getters and setters for IDs
     int isWalkingHash;
     int isRunningHash;
+    int isJumpingInPlaceHash;
 
     // Variable to store the instance of the PlayerInput
     PlayerInput input;
@@ -19,6 +20,7 @@ public class characterMovement : MonoBehaviour
     Vector2 currentMovement;
     bool movementPressed;
     bool runPressed;
+    bool jumpPressed;
 
     // Awake is called when the script instance is loaded
     void Awake() 
@@ -31,6 +33,7 @@ public class characterMovement : MonoBehaviour
             movementPressed = currentMovement.x != 0 || currentMovement.y != 0;
         };
         input.CharacterControls.Run.performed += ctx => runPressed = ctx.ReadValueAsButton();
+        input.CharacterControls.Jump.performed += ctx => jumpPressed = ctx.ReadValueAsButton();
         input.CharacterControls.Movement.canceled += ctx => { movementPressed = false;};
     }
 
@@ -41,6 +44,7 @@ public class characterMovement : MonoBehaviour
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        isJumpingInPlaceHash = Animator.StringToHash("isJumpingInPlace");
     }
 
     // Update is called once per frame
@@ -72,6 +76,7 @@ public class characterMovement : MonoBehaviour
         //Get parameter values from the animator
         bool isRunning = animator.GetBool(isRunningHash);
         bool isWalking = animator.GetBool(isWalkingHash);
+        bool isJumpingInPlace = animator.GetBool(isJumpingInPlaceHash);
 
         // Start walking if movement is pressed and not already walking
         if (movementPressed && !isWalking)
@@ -85,7 +90,7 @@ public class characterMovement : MonoBehaviour
             animator.SetBool(isWalkingHash, false);
         }
 
-        // Start running if movement is pressed and run is pressed but not already tunning
+        // Start running if movement is pressed and run is pressed but not already running
         if((movementPressed && runPressed) && !isRunning)
         {
             animator.SetBool(isRunningHash, true);
@@ -95,6 +100,16 @@ public class characterMovement : MonoBehaviour
         if((!movementPressed || !runPressed) && isRunning)
         {
             animator.SetBool(isRunningHash, false);
+        }
+
+        if(jumpPressed && !isJumpingInPlace && !isWalking  && !isRunning)
+        {
+            animator.SetBool(isJumpingInPlaceHash, true);
+        }
+
+        if(!jumpPressed && isJumpingInPlace)
+        {
+            animator.SetBool(isJumpingInPlaceHash, false);
         }
     }
 
